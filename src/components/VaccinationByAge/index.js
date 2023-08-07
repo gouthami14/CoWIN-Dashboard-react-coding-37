@@ -18,8 +18,9 @@ const VaccinationByAge = props => {
         >
           <Cell name="18-44" fill="#2d87bb" />
           <Cell name="44-60" fill="#a3df9f" />
-          <Cell name="Above 60" fill="#64c2a661v " />
+          <Cell name="Above 60" fill="#64c2a6" />
         </Pie>
+
         <Legend
           iconType="circle"
           layout="horizontal"
