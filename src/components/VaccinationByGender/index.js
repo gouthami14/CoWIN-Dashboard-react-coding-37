@@ -1,4 +1,5 @@
 // Write your code here
+
 import {PieChart, Pie, Legend, Cell} from 'recharts'
 import './index.css'
 
@@ -10,8 +11,8 @@ const VaccinationByGender = props => {
       <h1 className="vaccination-by-gender-heading">Vaccination by gender</h1>
       <PieChart width={1000} height={300}>
         <Pie
-          cx="60%"
-          cy="50%"
+          cx="50%"
+          cy="60%"
           data={vaccinationByGenderDetails}
           startAngle={180}
           endAngle={0}
