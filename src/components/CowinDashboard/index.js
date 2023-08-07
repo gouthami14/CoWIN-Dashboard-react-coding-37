@@ -1,9 +1,10 @@
 // Write your code here
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
-import VaccinationByAge from '../VaccinationByAge'
-import VaccinationByGender from '../VaccinationByGender'
+
 import VaccinationCoverage from '../VaccinationCoverage'
+import VaccinationByGender from '../VaccinationByGender'
+import VaccinationByAge from '../VaccinationByAge'
 
 import './index.css'
 
@@ -16,8 +17,8 @@ const apiStatusConstants = {
 
 class CowinDashboard extends Component {
   state = {
-    vaccinationData: {},
     apiStatus: apiStatusConstants.initial,
+    vaccinationData: {},
   }
 
   componentDidMount() {
@@ -29,10 +30,10 @@ class CowinDashboard extends Component {
       apiStatus: apiStatusConstants.inProgress,
     })
 
-    const vaccinationDataApiUrl = 'https://apis.ccbp.in/covid-vaccination-data'
+    const covidVaccinationDataApiUrl =
+      'https://apis.ccbp.in/covid-vaccination-data'
 
-    const response = await fetch(vaccinationDataApiUrl)
-
+    const response = await fetch(covidVaccinationDataApiUrl)
     if (response.ok === true) {
       const fetchedData = await response.json()
       const updatedData = {
@@ -63,7 +64,18 @@ class CowinDashboard extends Component {
     }
   }
 
-  renderVaccinationStatus = () => {
+  renderFailureView = () => (
+    <div className="failure-view">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/api-failure-view.png"
+        alt="failure view"
+        className="failure-img"
+      />
+      <h1 className="failure-text">Something went wrong</h1>
+    </div>
+  )
+
+  renderVaccinationStats = () => {
     const {vaccinationData} = this.state
 
     return (
@@ -81,17 +93,6 @@ class CowinDashboard extends Component {
     )
   }
 
-  renderFailureView = () => (
-    <div className="failure-view">
-      <img
-        src="https://assets.ccbp.in/frontend/react-js/api-failure-view.png"
-        alt="failure view"
-        className="failure-img"
-      />
-      <h1 className="failure-text">Something went wrong</h1>
-    </div>
-  )
-
   renderLoadingView = () => (
     <div data-testid="loader" className="loading-view">
       <Loader color="#fff" height={80} width={80} type="ThreeDots" />
@@ -103,7 +104,7 @@ class CowinDashboard extends Component {
 
     switch (apiStatus) {
       case apiStatusConstants.success:
-        return this.renderVaccinationStatus()
+        return this.renderVaccinationStats()
       case apiStatusConstants.failure:
         return this.renderFailureView()
       case apiStatusConstants.inProgress:
