@@ -49,8 +49,20 @@ const VaccinationCoverage = props => {
             fontFamily: 'Roboto',
           }}
         />
-        <Bar dataKey="does1" name="Dose 1" barSize="20%" fill="#5a8dee" radius={{10, 10, 0, 0}} />
-        <Bar dataKey="does2" name="Dose 2" barSize="20%" fill=" #f54394" radius={{5, 5, 0, 0}} />
+         <Bar
+          dataKey="does1"
+          name="Dose 1"
+          barSize="20%"
+          fill="#5a8dee"
+          radius={[10, 10, 0, 0]}
+        />
+        <Bar
+          dataKey="does2"
+          name="Dose 2"
+          barSize="20%"
+          fill="#f54394"
+          radius={[5, 5, 0, 0]}
+        />
       </BarChart>
     </div>
   )
